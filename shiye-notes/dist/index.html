@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#52644b">
+  <meta name="description" content="拾頁：整理統計觀念、R 程式碼與每一次學習發現的個人筆記網站。">
+  <title>拾頁 · 統計與 R 筆記</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./notes.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳至筆記內容</a>
+  <aside class="sidebar">
+    <a class="brand" href="./" aria-label="拾頁首頁"><span class="brand-mark">拾</span><span>拾頁<small>STATISTICS & R NOTES</small></span></a>
+    <div class="workspace-label">我的學習空間 <span>個人</span></div>
+    <nav aria-label="筆記導覽">
+      <button class="nav-item active" data-view="all"><span class="nav-icon">▦</span>所有筆記 <span class="count" id="all-count">6</span></button>
+      <button class="nav-item" data-view="favorites"><span class="nav-icon">☆</span>我的收藏 <span class="count" id="fav-count">0</span></button>
+    </nav>
+    <p class="side-label">主題分類</p>
+    <nav id="category-nav" aria-label="主題分類"></nav>
+    <div class="side-bottom">
+      <div class="study-tip"><span>✳</span><p>讓知識，有跡可循。<small>把公式的意義，寫成自己的話。</small></p></div>
+      <button id="export-btn" class="utility-btn">↗ 匯出個人備份</button>
+      <button id="import-btn" class="utility-btn">↙ 匯入個人備份</button>
+      <input type="file" id="import-file" accept="application/json,.json" hidden>
+      <p class="storage-note">個人筆記僅儲存於此瀏覽器<br>換裝置前，記得匯出備份。</p>
+    </div>
+  </aside>
+  <div class="app-shell">
+    <header class="topbar"><span class="breadcrumb">學習空間 <span>/</span> <strong id="breadcrumb-title">所有筆記</strong></span><span class="topbar-right"><span class="status-dot"></span>本機儲存 <span class="avatar" aria-label="個人空間">我</span></span></header>
+    <main id="main">
+      <section class="page-heading"><div><p class="eyebrow">COLLECT IDEAS. CONNECT KNOWLEDGE.</p><h1 id="page-title">把學過的，慢慢拾起。</h1><p class="intro">統計觀念、R 程式碼，還有每一次恍然大悟。</p></div><button id="new-note" class="primary-btn"><span>＋</span> 新增筆記</button></section>
+      <section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><span class="hero-kicker"><span class="tiny-line"></span> 給正在累積的你</span><h2 id="hero-title">從一個觀念，<br>連起一整片知識。</h2><p>不只記住公式，也記下「為什麼」。<br>在這裡，把零散的學習變成自己的知識地圖。</p><button id="start-reading" class="text-btn">從描述統計開始 <span>↗</span></button></div><div class="hero-art" aria-hidden="true"><div class="art-grid"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="formula">x̄ = <span>Σ xᵢ</span> / n</div><div class="code-sheet"><div class="sheet-dots"><i></i><i></i><i></i><span>first_steps.R</span></div><div class="code-body"><span class="code-comment"># 讓資料說故事</span><br><span class="code-var">x</span> &lt;- c(2, 4, 6, 8)<br><span class="code-fn">mean</span>(x)<br><span class="code-comment">[1] 5</span><br><br><span class="code-fn">summary</span>(x)<span class="caret"></span></div></div><div class="art-caption">A LITTLE KNOWLEDGE, EVERY DAY.</div><div class="mini-note">觀念 × 實作<span>學習的兩種視角</span></div></div></section>
+      <section class="overview" aria-label="筆記概況"><div><span class="stat-icon sage">▤</span><p><strong id="stat-total">6</strong><span>篇筆記</span></p></div><div><span class="stat-icon amber">◈</span><p><strong>5</strong><span>個學習主題</span></p></div><div><span class="stat-icon mauve">☆</span><p><strong id="stat-favorites">0</strong><span>篇收藏</span></p></div><p class="overview-quote">「理解，是最好的記憶。」<span>LEARN AT YOUR OWN PACE</span></p></section>
+      <section class="notes-section" aria-labelledby="notes-title"><div class="section-title"><div><h2 id="notes-title">我的筆記</h2><span id="result-count" aria-live="polite">共 6 篇</span></div><label class="sort-label">排序<select id="sort"><option value="updated">最近更新</option><option value="title">標題排序</option><option value="oldest">最早更新</option></select></label></div><div class="filter-bar"><div id="filter-tabs" class="filter-tabs" role="group" aria-label="篩選筆記"></div><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜尋觀念、標籤或 R 程式碼…" aria-label="搜尋筆記"><kbd>/</kbd></label></div><div id="notes-grid" class="notes-grid"></div><div id="empty-state" class="empty-state" hidden><span>⌕</span><h3>這裡還沒有符合的筆記</h3><p>試試其他關鍵字，或把新的學習發現記下來。</p><button id="clear-filter" class="secondary-btn">顯示所有筆記</button></div></section>
+      <footer><span>拾頁 <span class="footer-dot">·</span> 一頁一頁，累積你的理解。</span><div class="mobile-backup"><button id="mobile-export">匯出備份</button><button id="mobile-import">匯入備份</button><span>個人筆記僅存於此瀏覽器</span></div><a href="./AGENTS.md" download>下載專案規範 ↗</a></footer>
+    </main>
+  </div>
+  <dialog id="reader" class="reader-dialog"><div class="dialog-top"><span id="reader-category" class="badge"></span><button class="icon-btn" data-close="reader" aria-label="關閉筆記">✕</button></div><div class="reader-heading"><div id="reader-tags" class="tags"></div><h2 id="reader-title"></h2><p id="reader-meta"></p></div><article id="reader-body" class="prose"></article><div class="reader-actions"><button id="reader-fav" class="secondary-btn">☆ 收藏</button><button id="edit-note" class="secondary-btn">編輯筆記</button><button id="delete-note" class="danger-btn">刪除個人筆記</button></div></dialog>
+  <dialog id="editor" class="editor-dialog"><form id="note-form"><div class="dialog-top"><h2 id="editor-title">記下一個新發現</h2><button type="button" class="icon-btn" data-close="editor" aria-label="關閉編輯器">✕</button></div><label>筆記標題<input id="note-title" required maxlength="100" placeholder="例如：用 R 理解中央極限定理"></label><div class="form-row"><label>主題分類<select id="note-category"></select></label><label>標籤（以逗號分隔）<input id="note-tags" maxlength="120" placeholder="例如：R, 模擬, 抽樣"></label></div><label>一句話摘要<input id="note-summary" required maxlength="180" placeholder="用一句話，記下這篇筆記的重點。"></label><label>筆記內容<textarea id="note-body" required maxlength="30000" rows="13" placeholder="## 核心觀念&#10;寫下你對這個觀念的理解。&#10;&#10;## R 實作&#10;```r&#10;mean(c(2, 4, 6, 8))&#10;```"></textarea></label><p class="form-help">支援 ## 小標題、- 清單與 ``` 程式碼區塊。內容僅存於此瀏覽器，可隨時匯出備份。</p><div class="form-actions"><button type="button" class="secondary-btn" data-close="editor">取消</button><button type="submit" class="primary-btn">儲存筆記 ↗</button></div></form></dialog>
+  <dialog id="delete-dialog" class="confirm-dialog"><h2>刪除這篇個人筆記？</h2><p>此操作無法復原。需要保留內容時，請先匯出備份。</p><div class="form-actions"><button class="secondary-btn" data-close="delete-dialog">取消</button><button id="confirm-delete" class="danger-btn">確認刪除</button></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
